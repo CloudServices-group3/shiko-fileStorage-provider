@@ -1,6 +1,3 @@
 @shiko_filestorage_provider_HostAddress = http://localhost:5237
 
-GET {{shiko_filestorage_provider_HostAddress}}/weatherforecast/
-Accept: application/json
-
 ###
