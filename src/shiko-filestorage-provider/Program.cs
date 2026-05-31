@@ -1,10 +1,12 @@
 using Azure.Storage.Blobs;
 using shiko_filestorage_provider.Endpoints;
+using shiko_filestorage_provider.OpenApi;
+using shiko_filestorage_provider.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddCorsConfiguration();
-//builder.Services.AddOpenApiConfiguration();
+builder.Services.AddCorsConfiguration();
+builder.Services.AddImageProviderOpenApi();
 
 builder.Services.AddSingleton(_ =>
 {
@@ -14,20 +16,14 @@ builder.Services.AddSingleton(_ =>
     return new BlobServiceClient(connectionstring);
 });
 
-
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
 app.UseCors("All");
 app.UseHttpsRedirection();
 
-//app.MapOpenApiEndpoints();
+app.MapOpenApiEndpoints();
 app.MapImageEndpoints();
 
 app.Run();
