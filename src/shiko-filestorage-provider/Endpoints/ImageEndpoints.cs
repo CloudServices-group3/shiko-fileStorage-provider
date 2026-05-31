@@ -43,13 +43,13 @@ public static class ImageEndpoints
                 ["file"] = ["Only jpeg, jpg, webp and png images are allowed."]
             });
 
-        // Create of the container and upstreams of the image.
+        // Create of the containers and upstreams of the image.
         var containerName = configuration["BlobStorageContainers:ImageContainerName"] // From appsettings.json
             ?? throw new InvalidOperationException("BlobStorageContainers:ImageContainerName is missing.");
 
         // A containerClient of the blob.
         var containerClient = client.GetBlobContainerClient(containerName);
-        await containerClient.CreateIfNotExistsAsync(PublicAccessType.Blob, cancellationToken: ct); // create a container.
+        await containerClient.CreateIfNotExistsAsync(PublicAccessType.Blob, cancellationToken: ct); // create a container if there is no container.
 
         // Imageprovider
         var extension = Path.GetExtension(file.FileName);
