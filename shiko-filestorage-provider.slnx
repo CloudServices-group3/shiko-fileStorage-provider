@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/shiko-filestorage-provider/shiko-filestorage-provider.csproj" />
+  </Folder>
+</Solution>
